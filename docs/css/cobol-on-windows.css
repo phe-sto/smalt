@@ -11,10 +11,19 @@
   --g1:#e6e6e4;--g2:#c6c6c4;--g3:#8d8d8b;--g4:#525251;--g5:#a8a8a6;
   --d1:#262626;--d2:#393939;--d3:#6f6f6e; /* dark-section greys */
   --terminal:#0c0c0c;
+  /* Smalt — the product's pigment, cobalt glass ground to a blue powder: the
+     brand colour is the pigment itself, #003399 (OKLCH 0.371 0.173 262). The
+     hue is the one the page always had; only the lightness drops to the real
+     pigment's. On the light page it carries 9.9:1 on --color-bg and 10.9:1
+     under white button text. At that lightness it disappears on the dark
+     grounds (1.7:1 on --ink), so --smalt-light is the same hue and pigment
+     family lifted to L 0.66 for the dark top bar, the terminal and the
+     favicon — 5.7:1 on --ink, 6.2:1 on --terminal. */
+  --smalt:#003399;--smalt-light:oklch(0.66 0.145 262);
   /* Nocturne tokens, retuned for a light page */
   --color-bg:#f4f4f3;--color-surface:var(--white);--color-text:#161616;--color-divider:#d4d4d2;
   --ink:var(--color-text);
-  --color-accent:oklch(0.52 0.19 262);--color-accent-light:oklch(0.78 0.11 262);
+  --color-accent:var(--smalt);--color-accent-light:var(--smalt-light);
   --font-heading:"IBM Plex Sans",system-ui,sans-serif;--font-body:var(--font-heading);--mono:"IBM Plex Mono",ui-monospace,monospace;
   --radius-md:0;--radius-sm:0;
 }
@@ -32,8 +41,12 @@ a{color:var(--color-accent)}a:hover{color:var(--ink)}
 /* top bar */
 .top{position:sticky;top:0;z-index:5;background:var(--ink);color:var(--color-bg)}
 .top .wrap{display:flex;align-items:center;gap:28px;height:48px}
-.top .brand{font-weight:500;margin-right:auto;display:flex;align-items:center;gap:10px}
-.top .brand b{display:grid;grid-template-columns:8px 8px;gap:2px}.top .brand b i{width:8px;height:8px;background:var(--color-bg)}.top .brand b i:last-child{background:var(--color-accent)}
+/* The brand sits at Plex Sans light, not 500: the name is set the way the
+   logo lockup sets it, and the pigment — not weight — carries it. */
+.top .brand{font-weight:300;margin-right:auto;display:flex;align-items:center;gap:10px}
+.top .brand .product{color:var(--color-accent-light)}
+h1 .product{color:var(--color-accent-light)}
+.top .brand b{display:grid;grid-template-columns:8px 8px;gap:2px}.top .brand b i{width:8px;height:8px;background:var(--color-bg)}.top .brand b i:last-child{background:var(--color-accent-light)}
 .top a{color:var(--g2);text-decoration:none;font-size:14px}.top a:hover{color:var(--white)}
 /* hero */
 .hero{border-bottom:1px solid var(--color-divider);background-image:linear-gradient(var(--color-divider) 1px,transparent 1px),linear-gradient(90deg,var(--color-divider) 1px,transparent 1px);background-size:80px 80px;background-position:-1px -1px}

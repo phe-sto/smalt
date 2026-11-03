@@ -4,9 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>COBOL on Windows — COBOL, off the mainframe</title>
+  <title>Smalt, COBOL on Windows — COBOL off the mainframe</title>
   <meta name="description"
     content="One PowerShell script installs GnuCOBOL 3.2, the GixSQL EXEC SQL preprocessor, a gdb debugger and VSCodium on Windows. No admin rights, no emulator, no licence server.">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="/assets/smalt-mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/icon-180.png">
   <link rel="stylesheet" href="/css/nocturne.css">
   <link rel="stylesheet" href="/css/cobol-on-windows.css">
 </head>
@@ -14,15 +17,16 @@
 <body>
   <header class="top">
     <div class="wrap">
-      <div class="brand"><b><i></i><i></i><i></i><i></i></b>COBOL on Windows</div>
+      <div class="brand"><b><i></i><i></i><i></i><i></i></b><span class="product">Smalt</span><strong>migrate COBOL on
+          Windows</strong></div>
       <nav>
         <a href="#features">Features</a>
         <a href="#code">Examples</a>
         <a href="#mapping">Mainframe map</a>
         <a href="#start">Get started</a>
-        <a href="https://github.com/phe-sto/cobol-on-windows#readme">Docs</a>
+        <a href="https://github.com/phe-sto/smalt#readme" target="_blank">Docs</a>
       </nav>
-      <a class="gh" href="https://github.com/phe-sto/cobol-on-windows" target="_blank">GitHub ↗</a>
+      <a class="gh" href="https://github.com/phe-sto/smalt" target="_blank">GitHub ↗</a>
     </div>
   </header>
 
@@ -30,17 +34,17 @@
     <div class="wrap">
       <div>
         <div class="eyebrow">Open source · GnuCOBOL 3.2 · GixSQL 1.0.20b · VSCodium 1.135 · Windows x64</div>
-        <h1>COBOL, <em>off the mainframe.</em></h1>
+        <h1><span class="product">Smalt</span>, <em>COBOL off the mainframe.</em></h1>
         <p class="lead">One PowerShell script installs the whole toolchain into <span class="mono">C:\cobol-dev</span>:
           compiler, debugger, editor and SQL preprocessor. Your sources, your copybooks and your
           <span class="mono">EXEC SQL</span> compile to native Windows <span class="mono">.exe</span> and
           <span class="mono">.dll</span>. No admin rights, no emulator, no licence server.</p>
         <div class="cta"><a class="btn btn-solid" href="#start">Get started →</a><a class="btn btn-line"
-            href="https://github.com/phe-sto/cobol-on-windows#readme">Read the docs</a></div>
+            href="https://github.com/phe-sto/smalt#readme" target="_blank">Read the docs</a></div>
         <div class="install">
           <div class="line"><span>PS&gt;</span>Invoke-WebRequest -UseBasicParsing -OutFile
             install-cobol-on-win.ps1
-            https://raw.githubusercontent.com/phe-sto/cobol-on-windows/main/src/install-cobol-on-win.ps1</div>
+            https://raw.githubusercontent.com/phe-sto/smalt/main/src/install-cobol-on-win.ps1</div>
           <div class="line"><span>PS&gt;</span>powershell -ExecutionPolicy Bypass -File .\install-cobol-on-win.ps1</div>
         </div>
       </div>
@@ -280,11 +284,11 @@ order_id   cust_id    order_date           shipped_date         status
       </div>
       <div class="steps">
         <div class="step"><span class="n">STEP 1</span>
-          <h3>Download, then install</h3><code class="multi">Invoke-WebRequest -UseBasicParsing -OutFile install-cobol-on-win.ps1 https://raw.githubusercontent.com/phe-sto/cobol-on-windows/main/src/install-cobol-on-win.ps1
+          <h3>Download, then install</h3><code class="multi">Invoke-WebRequest -UseBasicParsing -OutFile install-cobol-on-win.ps1 https://raw.githubusercontent.com/phe-sto/smalt/main/src/install-cobol-on-win.ps1
 powershell -ExecutionPolicy Bypass -File .\install-cobol-on-win.ps1</code>
           <p>Nothing to clone and nothing to unzip: two lines in any PowerShell window. The script works on its own —
             whatever is not next to it, compiler included, it downloads from the
-            <a href="https://github.com/phe-sto/cobol-on-windows">GitHub repository</a>. Everything lands in
+            <a href="https://github.com/phe-sto/smalt" target="_blank">GitHub repository</a>. Everything lands in
             <span class="mono">C:\cobol-dev</span>; add <span class="mono">-InstallDir</span> to put it elsewhere.</p>
         </div>
         <div class="step"><span class="n">STEP 2</span>
@@ -304,10 +308,10 @@ powershell -ExecutionPolicy Bypass -File .\install-cobol-on-win.ps1</code>
 
   <footer>
     <div class="wrap">
-      <span>COBOL on Windows © 2026 · <a href="https://www.wtfpl.net/">WTFPL</a></span>
-      <a href="https://github.com/phe-sto/cobol-on-windows#readme">Docs</a>
-      <a href="https://github.com/phe-sto/cobol-on-windows" target="_blank">GitHub</a>
-      <a href="https://www.papit.fr/">Contact</a></div>
+      <span>COBOL on Windows © 2026 · <a href="https://www.wtfpl.net/" target="_blank">WTFPL</a></span>
+      <a href="https://github.com/phe-sto/smalt#readme" target="_blank">Docs</a>
+      <a href="https://github.com/phe-sto/smalt" target="_blank">GitHub</a>
+      <a href="https://www.papit.fr/contact" target="_blank">Contact</a></div>
   </footer>
 </body>
 

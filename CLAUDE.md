@@ -24,12 +24,12 @@ Codium for being Open Source and vendor free.
 # Code and binary sources
 
 Are to be embedded in the project. The project is hosted in the GitHub repo
-https://github.com/phe-sto/cobol-on-windows.
+https://github.com/phe-sto/smalt.
 It all serve as a fallback if only `.\src\install-cobol-on-win.ps1` is downloaded and ran.
 Binaries in `.\bin\` are Git LFS objects, so the fallback URLs use
-`https://media.githubusercontent.com/media/phe-sto/cobol-on-windows/main/...` for those
+`https://media.githubusercontent.com/media/phe-sto/smalt/main/...` for those
 (`raw.githubusercontent.com` returns the LFS pointer instead of the file) and
-`https://raw.githubusercontent.com/phe-sto/cobol-on-windows/main/...` for everything else.
+`https://raw.githubusercontent.com/phe-sto/smalt/main/...` for everything else.
 Two folders, `.\src\` for sources and bin for binaries.
 Cobol example files are in `.\src\example\`
 

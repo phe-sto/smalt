@@ -21,7 +21,7 @@
       access); otherwise each missing file is downloaded, either from -VSCodiumUrl /
       -GnuCobolUrl / -SevenZipUrl / -GixSqlUrl, or from -ExampleBaseUrl for the
       sample project. Those downloads come straight from the project's GitHub
-      repository, https://github.com/phe-sto/cobol-on-windows, so this script
+      repository, https://github.com/phe-sto/smalt, so this script
       still works when only it, alone, is downloaded and run - those URLs and
       -ProjectBinDir can still be overridden on the command line for testing or
       to point at different sources.
@@ -144,7 +144,7 @@
 param(
     [string]$InstallDir = (Join-Path $env:SystemDrive.ToLower() 'cobol-dev'),
     # The download fallback is the project's own GitHub repository,
-    # https://github.com/phe-sto/cobol-on-windows (see CLAUDE.md). Two different
+    # https://github.com/phe-sto/smalt (see CLAUDE.md). Two different
     # hosts are needed there, and they are not interchangeable:
     #   - media.githubusercontent.com/media/<repo>/<ref>/<path> for the big
     #     binaries in bin\, which are tracked with Git LFS. raw.githubusercontent.com
@@ -154,27 +154,27 @@ param(
     #     plain file in the repository (src\example\, bin\example\). The media
     #     host answers 404 for those.
     # Original from https://github.com/VSCodium/vscodium/releases
-    [string]$VSCodiumUrl = 'https://media.githubusercontent.com/media/phe-sto/cobol-on-windows/main/bin/VSCodium-win32-x64-1.135.06055.zip',
+    [string]$VSCodiumUrl = 'https://media.githubusercontent.com/media/phe-sto/smalt/main/bin/VSCodium-win32-x64-1.135.06055.zip',
     # Original from $GnuCobolUrl https://www.arnoldtrembley.com/GC32M-BDB-x64.7z
-    [string]$GnuCobolUrl = 'https://media.githubusercontent.com/media/phe-sto/cobol-on-windows/main/bin/GC32M-BDB-x64.7z',
+    [string]$GnuCobolUrl = 'https://media.githubusercontent.com/media/phe-sto/smalt/main/bin/GC32M-BDB-x64.7z',
     # Original from https://www.7-zip.org/a/7zr.exe
-    [string]$SevenZipUrl = 'https://media.githubusercontent.com/media/phe-sto/cobol-on-windows/main/bin/7zr.exe',
+    [string]$SevenZipUrl = 'https://media.githubusercontent.com/media/phe-sto/smalt/main/bin/7zr.exe',
     # Original from https://github.com/mridoni/gixsql/releases
-    [string]$GixSqlUrl = 'https://media.githubusercontent.com/media/phe-sto/cobol-on-windows/main/bin/gixsql-binaries-windows-x64-mingw-1.0.20b-1.7z',
+    [string]$GixSqlUrl = 'https://media.githubusercontent.com/media/phe-sto/smalt/main/bin/gixsql-binaries-windows-x64-mingw-1.0.20b-1.7z',
     # Original: IBM's DB2 CLI/ODBC driver ("DS Driver") has no stable, login-free
     # download URL of its own, so this project's own copy is the only default here.
-    [string]$Db2CliUrl = 'https://media.githubusercontent.com/media/phe-sto/cobol-on-windows/main/bin/ntx64_odbc_cli.zip',
+    [string]$Db2CliUrl = 'https://media.githubusercontent.com/media/phe-sto/smalt/main/bin/ntx64_odbc_cli.zip',
     # Original from Microsoft: see .PARAMETER AccessEngineUrl below. Only installed
     # when this script itself is running elevated (Administrator) - see section 2c.
-    [string]$AccessEngineUrl = 'https://media.githubusercontent.com/media/phe-sto/cobol-on-windows/main/bin/accessdatabaseengine_X64.exe',
+    [string]$AccessEngineUrl = 'https://media.githubusercontent.com/media/phe-sto/smalt/main/bin/accessdatabaseengine_X64.exe',
     # Embedded binary sources for this project (see CLAUDE.md: src/ + bin/).
     [string]$ProjectBinDir,
     # Hosted copy of src/example/, used the same way as -ProjectBinDir when this
     # script runs standalone (see CLAUDE.md). Plain repository files, so raw. here.
-    [string]$ExampleBaseUrl = 'https://raw.githubusercontent.com/phe-sto/cobol-on-windows/main/src/example',
+    [string]$ExampleBaseUrl = 'https://raw.githubusercontent.com/phe-sto/smalt/main/src/example',
     # Same, for the example data files that are binaries and so live in
     # bin/example/ instead: the Access sample database.
-    [string]$ExampleBinBaseUrl = 'https://raw.githubusercontent.com/phe-sto/cobol-on-windows/main/bin/example',
+    [string]$ExampleBinBaseUrl = 'https://raw.githubusercontent.com/phe-sto/smalt/main/bin/example',
     [switch]$PersistUserEnv,
     [switch]$Force
 )
@@ -195,7 +195,7 @@ $ExampleDir = Join-Path $ScriptDir 'example'
 # ---------------------------------------------------------------------------
 function Write-Step([string]$Message) {
     Write-Host ""
-    Write-Host "==> $Message" -ForegroundColor Cyan
+    Write-Host "==> $Message" -ForegroundColor Blue
 }
 
 function Test-IsAdmin {

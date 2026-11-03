@@ -1,4 +1,5 @@
-# COBOL on Windows
+# Smalt
+## COBOL on Windows, COBOL off the mainframe
 
 A COBOL development environment that installs itself on a plain Windows PC or Windows Server: one PowerShell
 script, no clicks, no administrator rights, no proprietary licence to buy. Modern editor,
@@ -9,7 +10,7 @@ of the install.
 powershell -ExecutionPolicy Bypass -File .\src\install-cobol-on-win.ps1
 ```
 
-Project home: <https://github.com/phe-sto/cobol-on-windows>
+Project home: <https://github.com/phe-sto/smalt>
 
 ## Why
 
@@ -70,7 +71,7 @@ Or without cloning anything at all — two commands, the script then fetches wha
 this repository, file by file:
 
 ```powershell
-Invoke-WebRequest -UseBasicParsing -OutFile install-cobol-on-win.ps1 https://raw.githubusercontent.com/phe-sto/cobol-on-windows/main/src/install-cobol-on-win.ps1
+Invoke-WebRequest -UseBasicParsing -OutFile install-cobol-on-win.ps1 https://raw.githubusercontent.com/phe-sto/smalt/main/src/install-cobol-on-win.ps1
 powershell -ExecutionPolicy Bypass -File .\install-cobol-on-win.ps1
 ```
 

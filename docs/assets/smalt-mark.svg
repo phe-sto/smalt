@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="Smalt">
+  <title>Smalt</title>
+  <rect width="32" height="32" fill="#161616"/>
+  <rect x="5" y="5" width="10" height="10" fill="#f4f4f3"/>
+  <rect x="17" y="5" width="10" height="10" fill="#f4f4f3"/>
+  <rect x="5" y="17" width="10" height="10" fill="#f4f4f3"/>
+  <rect x="17" y="17" width="10" height="10" fill="#5f90ea"/>
+</svg>
