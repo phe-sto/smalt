@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Smalt, COBOL on Windows — COBOL off the mainframe</title>
   <meta name="description"
-    content="One PowerShell script installs GnuCOBOL 3.2, the GixSQL EXEC SQL preprocessor, a gdb debugger and VSCodium on Windows. No admin rights, no emulator, no licence server.">
+    content="One PowerShell script installs GnuCOBOL 3.2, the GixSQL EXEC SQL preprocessor, a gdb debugger and VSCodium on Windows. No admin rights, no emulator, no license.">
   <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
   <link rel="icon" href="/assets/smalt-mark.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/icon-180.png">
@@ -285,8 +285,16 @@ order_id   cust_id    order_date           shipped_date         status
       </div>
       <div class="steps">
         <div class="step"><span class="n">STEP 1</span>
-          <h3>Download, then install</h3><code class="multi">Invoke-WebRequest -UseBasicParsing -OutFile install-cobol-on-win.ps1 https://raw.githubusercontent.com/phe-sto/smalt/main/src/install-cobol-on-win.ps1
-powershell -ExecutionPolicy Bypass -File .\install-cobol-on-win.ps1</code>
+          <h3>Download, then install</h3>
+          <code class="multi">
+            <span class="line"><span>PS&gt;</span><span><span class="t">Invoke-WebRequest</span>
+                <span class="t">-UseBasicParsing</span> <span class="t">-OutFile</span>
+                <span class="t">install-cobol-on-win.ps1</span>
+                https://raw.githubusercontent.com/phe-sto/smalt/main/src/install-cobol-on-win.ps1</span></span>
+            <span class="line"><span>PS&gt;</span><span><span class="t">powershell</span>
+                <span class="t">-ExecutionPolicy</span> <span class="t">Bypass</span>
+                <span class="t">-File</span> <span class="t">.\install-cobol-on-win.ps1</span></span></span>
+          </code>
           <p>Nothing to clone and nothing to unzip: two lines in any PowerShell window. The script works on its own —
             whatever is not next to it, compiler included, it downloads from the
             <a href="https://github.com/phe-sto/smalt" target="_blank">GitHub repository</a>. Everything lands in

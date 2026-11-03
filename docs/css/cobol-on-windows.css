@@ -105,8 +105,15 @@ section.band{padding:96px 0;border-bottom:1px solid var(--color-divider)}
 .step .n{font-family:var(--mono);font-size:13px}
 .step h3{font-size:22px;font-weight:400;margin:0}
 .step code{font-family:var(--mono);font-size:13.5px;background:var(--color-surface);border:1px solid var(--color-divider);padding:10px 12px;display:block;overflow-x:auto;white-space:nowrap}
-/* Same as .install: a step holding a full download URL wraps instead of scrolling. */
-.step code.multi{white-space:pre-wrap;overflow-wrap:anywhere;overflow-x:visible;line-height:1.6}
+/* Same as .install: a step holding two commands gives each one its own PS>
+   prompt, and the full download URL wraps under its command — kept out of the
+   flow — instead of scrolling or running into the next line. */
+.step code.multi{display:flex;flex-direction:column;gap:10px;white-space:normal;overflow-wrap:anywhere;overflow-x:visible;line-height:1.6}
+.step code.multi .line{display:flex;gap:12px;align-items:baseline}
+.step code.multi .line>span:first-child{color:var(--g3);flex:none}
+/* A command wraps between its tokens, never inside one: a flag broken at its
+   own hyphen (-Out / File) reads as two flags. Only the URL breaks anywhere. */
+.step code.multi .t{white-space:nowrap}
 .step p{color:var(--g4);margin:0;font-size:15px}
 /* contact — the fields take Nocturne's .input, with the page's square corners
    and its label set like an .eyebrow, so the form reads as part of the grid. */
