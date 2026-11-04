@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Keep low-value or private pages out of the crawl
+Disallow: /admin/
+Disallow: /login
+Disallow: /cart
+Disallow: /checkout
+Disallow: /search
+Disallow: /*?s=
+Disallow: /*?sort=
+Disallow: /*?filter=
+
+Sitemap: https://www.cobol-on-windows.com/sitemap.xml
