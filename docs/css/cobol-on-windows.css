@@ -25,7 +25,7 @@
   --ink:var(--color-text);
   --color-accent:var(--smalt);--color-accent-light:var(--smalt-light);
   --font-heading:"IBM Plex Sans",system-ui,sans-serif;--font-body:var(--font-heading);--mono:"IBM Plex Mono",ui-monospace,monospace;
-  --radius-md:0;--radius-sm:0;
+  --radius-md:0;
 }
 .top nav{display:flex;gap:28px}
 .top .gh{color:var(--white)}

@@ -3,6 +3,120 @@
 
 <head>
   <meta charset="utf-8">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.papit.fr/#organization",
+      "name": "PapIT",
+      "legalName": "PapIT SASU",
+      "url": "https://www.papit.fr/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.papit.fr/img/logo-papit.png"
+      },
+      "description": "IT consulting and information management: Python, COBOL and JavaScript development, data processing and analysis.",
+      "email": "services@papit.fr",
+      "telephone": "+33 6 04 41 36 15",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "592 route de Couvette",
+        "postalCode": "74250",
+        "addressLocality": "Fillinges",
+        "addressCountry": "FR"
+      },
+      "founder": {
+        "@type": "Person",
+        "name": "Christophe Brun"
+      },
+      "sameAs": [
+        "https://github.com/phe-sto",
+        "https://github.com/papit-fr"
+      ],
+      "knowsAbout": ["COBOL", "GnuCOBOL", "Software development", "Python", "SQL", "DB2", "CI/CD"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.cobol-on-windows.com/#website",
+      "url": "https://www.cobol-on-windows.com/",
+      "name": "Smalt, COBOL on Windows",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://www.papit.fr/#organization" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.cobol-on-windows.com/#webpage",
+      "url": "https://www.cobol-on-windows.com/",
+      "name": "Smalt, COBOL on Windows — COBOL off the mainframe",
+      "description": "One PowerShell script installs GnuCOBOL 3.2, the GixSQL EXEC SQL preprocessor, a gdb debugger and VSCodium on Windows. No admin rights, no emulator, no license.",
+      "inLanguage": "en",
+      "isPartOf": { "@id": "https://www.cobol-on-windows.com/#website" },
+      "about": { "@id": "https://www.cobol-on-windows.com/#software" },
+      "mainEntity": { "@id": "https://www.cobol-on-windows.com/#software" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.cobol-on-windows.com/#software",
+      "name": "Smalt",
+      "alternateName": "COBOL on Windows",
+      "url": "https://www.cobol-on-windows.com/",
+      "description": "Free, open-source PowerShell installer that sets up a complete COBOL toolchain on Windows: GnuCOBOL 3.2, GixSQL EXEC SQL preprocessor (PostgreSQL, MySQL/MariaDB, SQLite, ODBC/DB2), gdb debugging and VSCodium with SuperBOL. No admin rights, no emulator, no license.",
+      "applicationCategory": "DeveloperApplication",
+      "applicationSubCategory": "COBOL compiler and IDE",
+      "operatingSystem": "Windows 10, Windows 11 (x64)",
+      "processorRequirements": "x64",
+      "downloadUrl": "https://raw.githubusercontent.com/phe-sto/smalt/main/src/install-cobol-on-win.ps1",
+      "installUrl": "https://raw.githubusercontent.com/phe-sto/smalt/main/src/install-cobol-on-win.ps1",
+      "softwareHelp": {
+        "@type": "CreativeWork",
+        "url": "https://github.com/phe-sto/smalt#readme"
+      },
+      "license": "http://www.wtfpl.net/",
+      "isAccessibleForFree": true,
+      "featureList": [
+        "Compile COBOL to native .exe and .dll",
+        "Copybooks and CALLed subprograms",
+        "EXEC SQL over ODBC: PostgreSQL, MySQL/MariaDB, SQLite, DB2, SQL Server, Access, Excel",
+        "Breakpoints and step-by-step debugging with gdb in VSCodium",
+        "COBOL DLLs callable from Java, C#, C/C++ and Python",
+        "Builds in GitHub Actions and GitLab CI",
+        "No administrator rights required"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      },
+      "author": { "@id": "https://www.papit.fr/#organization" },
+      "publisher": { "@id": "https://www.papit.fr/#organization" },
+      "provider": { "@id": "https://www.papit.fr/#organization" }
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "@id": "https://github.com/phe-sto/smalt#code",
+      "name": "Smalt source code",
+      "codeRepository": "https://github.com/phe-sto/smalt",
+      "programmingLanguage": ["PowerShell", "COBOL"],
+      "license": "http://www.wtfpl.net/",
+      "targetProduct": { "@id": "https://www.cobol-on-windows.com/#software" },
+      "author": { "@id": "https://www.papit.fr/#organization" }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.cobol-on-windows.com/#consulting",
+      "name": "COBOL mainframe-to-Windows migration consulting",
+      "serviceType": "COBOL migration and training",
+      "description": "Mainframe COBOL migration to Windows, database and ODBC/EXEC SQL setup, server configuration, CI builds and team training.",
+      "provider": { "@id": "https://www.papit.fr/#organization" },
+      "areaServed": "Worldwide",
+      "availableLanguage": ["en", "fr"]
+    }
+  ]
+}
+</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Smalt, COBOL on Windows — COBOL off the mainframe</title>
   <meta name="description"
