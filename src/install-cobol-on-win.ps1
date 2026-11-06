@@ -11,7 +11,7 @@
         GnuCOBOL\         cobc compiler + GCC + gdb (MSYS2 build by Arnold Trembley / Chuck Haatvedt)
         projects\         cobol-example-project, ready to build, holding every
                           example (hello\, subroutine\, access\, mariadb\)
-        CoBOL-Codium.cmd  sets the GnuCOBOL environment, then opens VSCodium
+        COBOL-Codium.cmd  sets the GnuCOBOL environment, then opens VSCodium
         bin\              command-line wrappers (cobc, cobcrun, gcsort, gixpp,
                           cobol-run, cobol-env), the only folder added to the
                           user Path by default - see -PersistUserEnv
@@ -276,7 +276,7 @@ function Repair-GixsqlCursorTrailer([string]$CbsqlPath) {
 
 # cmd.exe reads "%" as the start of a variable reference, so a literal one in
 # a value has to be doubled. Used for both the per-example launchers and
-# CoBOL-Codium.cmd.
+# COBOL-Codium.cmd.
 function ConvertTo-CmdValue([string]$Value) { $Value -replace '%', '%%' }
 
 # Writes a .cmd next to a compiled example that sets the GnuCOBOL/GixSQL
@@ -1202,7 +1202,7 @@ else {
 # ---------------------------------------------------------------------------
 # 8. Launcher
 # ---------------------------------------------------------------------------
-Write-Step 'Launcher CoBOL-Codium.cmd'
+Write-Step 'Launcher COBOL-Codium.cmd'
 
 $cmd = New-Object Text.StringBuilder
 [void]$cmd.AppendLine('@echo off')
@@ -1212,7 +1212,7 @@ Get-CmdEnvironmentLine | ForEach-Object { [void]$cmd.AppendLine($_) }
 
 # cmd.exe reads .cmd files in the OEM code page: write them in that encoding.
 $oem = [Text.Encoding]::GetEncoding([Globalization.CultureInfo]::CurrentCulture.TextInfo.OEMCodePage)
-$launcher = Join-Path $InstallDir 'CoBOL-Codium.cmd'
+$launcher = Join-Path $InstallDir 'COBOL-Codium.cmd'
 [IO.File]::WriteAllText($launcher, $cmd.ToString(), $oem)
 Write-Host "   $launcher"
 
@@ -1301,7 +1301,7 @@ Write-Host '   open a new terminal to use it.'
 # ---------------------------------------------------------------------------
 Write-Host ''
 Write-Host 'Installation complete.' -ForegroundColor Green
-Write-Host "  Start the IDE         : Type CoBOL in the Start Menu or $launcher (or the Desktop shortcut)"
+Write-Host "  Start the IDE         : Type COBOL in the Start Menu or $launcher (or the Desktop shortcut)"
 Write-Host '  Run                   : Ctrl + F5   or  Run > Start Without Debugging'
 Write-Host '  Debug                 : F5          or  Run > Start Debugging'
 Write-Host '  Build                 : F6          or  Terminal > Run Build Task... (Ctrl+Shift+B)'
