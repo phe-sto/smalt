@@ -158,10 +158,14 @@
         <div class="cta"><a class="btn btn-solid" href="#start">Get started →</a><a class="btn btn-line"
             href="https://github.com/phe-sto/smalt#readme" target="_blank">Read the docs</a></div>
         <div class="install">
-          <div class="line"><span>PS&gt;</span>Invoke-WebRequest -UseBasicParsing -OutFile
+          <div class="line"><button class="copy" type="button"
+              data-copy="Invoke-WebRequest -UseBasicParsing -OutFile install-cobol-on-win.ps1 https://raw.githubusercontent.com/phe-sto/smalt/main/src/install-cobol-on-win.ps1"
+              aria-label="Copy the download command">Copy</button><span>PS&gt;</span>Invoke-WebRequest -UseBasicParsing -OutFile
             install-cobol-on-win.ps1
             https://raw.githubusercontent.com/phe-sto/smalt/main/src/install-cobol-on-win.ps1</div>
-          <div class="line"><span>PS&gt;</span>powershell -ExecutionPolicy Bypass -File .\install-cobol-on-win.ps1</div>
+          <div class="line"><button class="copy" type="button"
+              data-copy="powershell -ExecutionPolicy Bypass -File .\install-cobol-on-win.ps1"
+              aria-label="Copy the install command">Copy</button><span>PS&gt;</span>powershell -ExecutionPolicy Bypass -File .\install-cobol-on-win.ps1</div>
         </div>
       </div>
       <div class="win" role="img" aria-label="PowerShell window running install-cobol-on-win.ps1">
@@ -409,11 +413,15 @@ order_id   cust_id    order_date           shipped_date         status
         <div class="step"><span class="n">STEP 1</span>
           <h3>Download, then install</h3>
           <code class="multi">
-            <span class="line"><span>PS&gt;</span><span><span class="t">Invoke-WebRequest</span>
+            <span class="line"><button class="copy" type="button"
+                data-copy="Invoke-WebRequest -UseBasicParsing -OutFile install-cobol-on-win.ps1 https://raw.githubusercontent.com/phe-sto/smalt/main/src/install-cobol-on-win.ps1"
+                aria-label="Copy the download command">Copy</button><span>PS&gt;</span><span><span class="t">Invoke-WebRequest</span>
                 <span class="t">-UseBasicParsing</span> <span class="t">-OutFile</span>
                 <span class="t">install-cobol-on-win.ps1</span>
                 https://raw.githubusercontent.com/phe-sto/smalt/main/src/install-cobol-on-win.ps1</span></span>
-            <span class="line"><span>PS&gt;</span><span><span class="t">powershell</span>
+            <span class="line"><button class="copy" type="button"
+                data-copy="powershell -ExecutionPolicy Bypass -File .\install-cobol-on-win.ps1"
+                aria-label="Copy the install command">Copy</button><span>PS&gt;</span><span><span class="t">powershell</span>
                 <span class="t">-ExecutionPolicy</span> <span class="t">Bypass</span>
                 <span class="t">-File</span> <span class="t">.\install-cobol-on-win.ps1</span></span></span>
           </code>
@@ -483,6 +491,22 @@ order_id   cust_id    order_date           shipped_date         status
       <a href="#contact">Contact</a>
     </div>
   </footer>
+  <script>
+    // Copy buttons: the command comes from data-copy, not the rendered text,
+    // so the line wrapping in the markup never ends up in the clipboard.
+    document.querySelectorAll('button.copy').forEach(function (button) {
+      button.addEventListener('click', function () {
+        navigator.clipboard.writeText(button.dataset.copy).then(function () {
+          button.textContent = 'Copied';
+          button.classList.add('done');
+          setTimeout(function () {
+            button.textContent = 'Copy';
+            button.classList.remove('done');
+          }, 1500);
+        });
+      });
+    });
+  </script>
   <!-- Cloudflare Web Analytics -->
   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js'
     data-cf-beacon='{"token": "4c36233bd9a24906b2dc07817e3ab19a"}'>

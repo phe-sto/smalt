@@ -60,6 +60,11 @@ h1 .product{color:var(--color-accent-light)}
    prompt kept out of the flow, rather than scrolling the hero sideways. */
 .install .line{display:flex;gap:12px;align-items:baseline;overflow-wrap:anywhere}
 .install span{color:var(--g3);flex:none}
+/* copy button, in front of each command: square like .btn, set in the mono
+   face at the prompt's size, and turning smalt once the command is copied. */
+.copy{flex:none;font-family:var(--mono);font-size:12px;line-height:1;padding:4px 8px;border:1px solid var(--color-divider);border-radius:0;background:var(--color-bg);color:var(--g4);cursor:pointer}
+.copy:hover{border-color:var(--ink);color:var(--ink)}
+.copy.done{background:var(--color-accent);border-color:var(--color-accent);color:var(--white)}
 /* window chrome */
 .win{background:var(--g1);border:1px solid var(--ink);box-shadow:inset 1px 1px 0 var(--white),inset -1px -1px 0 var(--g3),8px 8px 0 var(--ink)}
 .win-bar{display:flex;align-items:center;gap:8px;background:var(--ink);color:var(--color-bg);padding:5px 6px 5px 10px;font-size:13px;font-family:var(--mono)}
@@ -110,7 +115,7 @@ section.band{padding:96px 0;border-bottom:1px solid var(--color-divider)}
    flow — instead of scrolling or running into the next line. */
 .step code.multi{display:flex;flex-direction:column;gap:10px;white-space:normal;overflow-wrap:anywhere;overflow-x:visible;line-height:1.6}
 .step code.multi .line{display:flex;gap:12px;align-items:baseline}
-.step code.multi .line>span:first-child{color:var(--g3);flex:none}
+.step code.multi .line>span:first-of-type{color:var(--g3);flex:none}
 /* A command wraps between its tokens, never inside one: a flag broken at its
    own hyphen (-Out / File) reads as two flags. Only the URL breaks anywhere. */
 .step code.multi .t{white-space:nowrap}
