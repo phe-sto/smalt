@@ -327,7 +327,7 @@ function New-CobolExampleBinary {
     $name = [IO.Path]::GetFileNameWithoutExtension($Source)
     # GetFullPath collapses the "src\..\bin" that $ProjectBinDir carries, so
     # the paths reported to the customer read as real locations.
-    $outDir = [IO.Path]::GetFullPath((Join-Path (Join-Path $ProjectBinDir 'example') $group))
+    $outDir = [IO.Path]::GetFullPath((Join-Path $ExampleBinDir $group))
     $outFile = Join-Path $outDir ($name + $(if ($Module) { '.dll' } else { '.exe' }))
     $log = Join-Path $Downloads "$name-build.log"
 
@@ -338,7 +338,7 @@ function New-CobolExampleBinary {
     try {
         if ($Sql) {
             $cbsql = Join-Path $outDir "$name.cbsql"
-            $ppOut = & $gixpp.FullName -e -S -P varchar -I $srcDir -I $ExampleDir -i $Source -o $cbsql 2>&1
+            $ppOut = & $gixpp.FullName -e -S -P varchar -I $srcDir -I $ExampleSourceDir -i $Source -o $cbsql 2>&1
             if ($LASTEXITCODE -ne 0) {
                 $ppOut | Out-File $log -Encoding utf8
                 throw "gixpp failed on $name.cob (exit code $LASTEXITCODE) - see $log"
@@ -347,7 +347,7 @@ function New-CobolExampleBinary {
             $toCompile = $cbsql
         }
 
-        $cobcArgs = @($(if ($Module) { '-m' } else { '-x' }), '-I', $srcDir, '-I', $ExampleDir, '-o', $outFile)
+        $cobcArgs = @($(if ($Module) { '-m' } else { '-x' }), '-I', $srcDir, '-I', $ExampleSourceDir, '-o', $outFile)
         if ($Sql) { $cobcArgs += @('-L', $GixSqlLib, '-lgixsql') }
         $cobcOut = & $cobc.FullName @cobcArgs $toCompile 2>&1
         if ($LASTEXITCODE -ne 0) {
@@ -1010,7 +1010,23 @@ foreach ($stale in @('settings.json', 'tasks.json', 'launch.json')) {
 #    greeter-main's CALL "greeter-lib" loads at run time), everything else
 #    with -x.
 # ---------------------------------------------------------------------------
-Write-Step 'Compiling the examples into bin\example\'
+# Run from the repository, the sources are the embedded src\example\ (so an
+# edit there is what gets built) and the binaries land in the repository's
+# bin\example\. Run standalone - only this script downloaded - there is no
+# src\example\ next to it and "..\bin" is just the folder above wherever it was
+# saved: the sources are then the project copy section 6 has just downloaded,
+# and the binaries go under the install folder instead.
+if (Test-Path $ExampleDir) {
+    $ExampleSourceDir = $ExampleDir
+    $ExampleBinDir = Join-Path $ProjectBinDir 'example'
+}
+else {
+    $ExampleSourceDir = $ProjectDir
+    $ExampleBinDir = Join-Path $ToolsDir 'example'
+}
+
+Write-Step "Compiling the examples into $([IO.Path]::GetFullPath($ExampleBinDir))"
+Write-Host "   sources: $ExampleSourceDir"
 
 $gccOnPath = Get-Command 'gcc.exe' -ErrorAction SilentlyContinue
 if (-not $gccOnPath) {
@@ -1032,7 +1048,7 @@ foreach ($ex in @(
         @{ Rel = 'access\select-orders.cob'; Sql = $true },
         @{ Rel = 'mariadb\select-tables.cob'; Sql = $true }
     )) {
-    $source = Join-Path $ExampleDir $ex.Rel
+    $source = Join-Path $ExampleSourceDir $ex.Rel
     if (-not (Test-Path $source)) {
         Write-Host "   skipped (not found): $($ex.Rel)" -ForegroundColor Yellow
         continue
