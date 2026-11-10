@@ -130,6 +130,8 @@ section.band{padding:96px 0;border-bottom:1px solid var(--color-divider)}
 .contact .input:hover{border-color:var(--g3)}
 .contact textarea.input{min-height:0;resize:vertical}
 .contact button{justify-self:start}
+.contact .actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.contact .or{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--g3)}
 footer{padding:48px 0 64px;font-size:14px;color:var(--g4)}
 footer .wrap{display:flex;flex-wrap:wrap;gap:32px;align-items:baseline}
 footer .wrap>span:first-child{margin-right:auto;font-family:var(--mono)}

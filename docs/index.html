@@ -126,6 +126,9 @@
   <link rel="apple-touch-icon" href="/assets/icon-180.png">
   <link rel="stylesheet" href="/css/nocturne.css">
   <link rel="stylesheet" href="/css/cobol-on-windows.css">
+  <!-- Calendly embed script and styles -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </head>
 
 <body>
@@ -160,12 +163,14 @@
         <div class="install">
           <div class="line"><button class="copy" type="button"
               data-copy="Invoke-WebRequest -UseBasicParsing -OutFile install-cobol-on-win.ps1 https://raw.githubusercontent.com/phe-sto/smalt/main/src/install-cobol-on-win.ps1"
-              aria-label="Copy the download command">Copy</button><span>PS&gt;</span>Invoke-WebRequest -UseBasicParsing -OutFile
+              aria-label="Copy the download command">Copy</button><span>PS&gt;</span>Invoke-WebRequest -UseBasicParsing
+            -OutFile
             install-cobol-on-win.ps1
             https://raw.githubusercontent.com/phe-sto/smalt/main/src/install-cobol-on-win.ps1</div>
           <div class="line"><button class="copy" type="button"
               data-copy="powershell -ExecutionPolicy Bypass -File .\install-cobol-on-win.ps1"
-              aria-label="Copy the install command">Copy</button><span>PS&gt;</span>powershell -ExecutionPolicy Bypass -File .\install-cobol-on-win.ps1</div>
+              aria-label="Copy the install command">Copy</button><span>PS&gt;</span>powershell -ExecutionPolicy Bypass
+            -File .\install-cobol-on-win.ps1</div>
         </div>
       </div>
       <div class="win" role="img" aria-label="PowerShell window running install-cobol-on-win.ps1">
@@ -372,7 +377,8 @@ order_id   cust_id    order_date           shipped_date         status
             <td>DFSORT</td>
             <td class="arrow">→</td>
             <td><span class="mono">COBOL</span>, the bundled GCSORT 01.03.06: DFSORT-style
-              <span class="mono">SORT</span>, <span class="mono">MERGE</span>, <span class="mono">JOIN</span> and <span class="mono">COPY</span>
+              <span class="mono">SORT</span>, <span class="mono">MERGE</span>, <span class="mono">JOIN</span> and <span
+                class="mono">COPY</span>
               control statement.
             </td>
           </tr>
@@ -480,14 +486,21 @@ order_id   cust_id    order_date           shipped_date         status
           <input class="input" id="contact-email" name="email" type="email" autocomplete="email" required>
         </div>
         <div class="field">
-          <label for="contact-phone">Phone <span class="opt">(optional)</span></label>
+          <label for="contact-phone">Phone <span class="opt">(optional)c</label>
           <input class="input" id="contact-phone" name="phone" type="tel" autocomplete="tel">
         </div>
         <div class="field wide">
           <label for="contact-message">Message</label>
           <textarea class="input" id="contact-message" name="message" rows="6" required></textarea>
         </div>
-        <div class="wide"><button class="btn btn-solid" type="submit">Send →</button></div>
+        <div class="wide actions">
+          <button class="btn btn-solid" type="submit">Send →</button>
+          <span class="or">or</span>
+          <a class="btn btn-line" href="https://calendly.com/christophe-brun-papit/30min" target="_blank"
+            rel="noopener"
+            onclick="if (window.Calendly) { Calendly.initPopupWidget({ url: this.href }); return false; }">Book a
+            30-min call ↗</a>
+        </div>
       </form>
     </div>
   </section>
