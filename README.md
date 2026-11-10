@@ -1,4 +1,5 @@
-# Smalt
+![alt text](docs/assets/smalt-logo-on-light-512.png "Smalt logo")
+
 ## COBOL on Windows, COBOL off the mainframe
 
 A COBOL development environment that installs itself on a plain Windows PC or Windows Server: one PowerShell
