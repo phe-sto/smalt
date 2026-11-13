@@ -72,7 +72,29 @@ h1 .product{color:var(--color-accent-light)}
 .win-bar .k{display:flex;gap:3px}.win-bar .k span{width:18px;height:16px;display:grid;place-items:center;background:var(--g1);color:var(--ink);font-size:11px;line-height:1;box-shadow:inset 1px 1px 0 var(--white),inset -1px -1px 0 var(--g4)}
 .win-menu{display:flex;gap:16px;padding:4px 10px;font-size:13px;border-bottom:1px solid var(--g2)}
 .win-menu u{text-decoration-thickness:1px}
-.win-body{margin:6px;background:var(--terminal);color:var(--g1);font-family:var(--mono);font-size:13.5px;line-height:1.65;padding:16px 18px;box-shadow:inset 1px 1px 0 var(--g4),inset -1px -1px 0 var(--white);overflow-x:auto;white-space:pre}
+/* video button, set like the window keys; the YouTube iframe is only created
+   on click and covers the terminal without changing the window's size. */
+.win-bar .play{font-family:var(--mono);font-size:11px;line-height:1;padding:2px 6px;border:0;border-radius:0;background:var(--g1);color:var(--ink);cursor:pointer;box-shadow:inset 1px 1px 0 var(--white),inset -1px -1px 0 var(--g4)}
+.win-bar .play:hover,.win-bar .play[aria-pressed="true"]{background:var(--color-accent-light);color:var(--ink)}
+.win-body iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--terminal)}
+/* Three cues lead to the video. 1. The title-bar button beats three times on
+   load, then rests. 2. The last prompt holds a "watch the demo" command with a
+   blinking cursor. 3. Hovering the terminal washes it and centres a play key;
+   a click anywhere in it starts the video. All stop once it plays. */
+@keyframes play-beat{0%{box-shadow:inset 1px 1px 0 var(--white),inset -1px -1px 0 var(--g4),0 0 0 0 oklch(0.66 0.145 262 / .8)}100%{box-shadow:inset 1px 1px 0 var(--white),inset -1px -1px 0 var(--g4),0 0 0 9px oklch(0.66 0.145 262 / 0)}}
+@keyframes cursor-blink{50%{opacity:0}}
+.win-bar .play{animation:play-beat 1.2s ease-out 1s 3}
+.win.playing .play{animation:none}
+.win-body .play-line{font:inherit;padding:0;border:0;border-radius:0;background:none;color:var(--color-accent-light);cursor:pointer}
+.win-body .play-line:hover{color:var(--white);text-decoration:underline}
+.win-body .cursor{animation:cursor-blink 1s steps(1) infinite}
+.win:not(.playing) .win-body{cursor:pointer}
+.win-body::before,.win-body::after{position:absolute;opacity:0;pointer-events:none;transition:opacity .2s}
+.win-body::before{content:"";inset:0;background:oklch(0.15 0 0 / .6)}
+.win-body::after{content:"▶";top:50%;left:50%;width:72px;height:56px;margin:-28px 0 0 -36px;display:grid;place-items:center;font-size:28px;line-height:1;background:var(--color-accent-light);color:var(--ink);box-shadow:inset 2px 2px 0 var(--white),inset -2px -2px 0 var(--g4),6px 6px 0 var(--ink)}
+.win:not(.playing) .win-body:hover::before,.win:not(.playing) .win-body:hover::after{opacity:1}
+@media (prefers-reduced-motion:reduce){.win-bar .play,.win-body .cursor{animation:none}.win-body::before,.win-body::after{transition:none}}
+.win-body{position:relative;margin:6px;background:var(--terminal);color:var(--g1);font-family:var(--mono);font-size:13.5px;line-height:1.65;padding:16px 18px;box-shadow:inset 1px 1px 0 var(--g4),inset -1px -1px 0 var(--white);overflow-x:auto;white-space:pre}
 .win-body .p{color:var(--g3)}.win-body .ok{color:var(--white);font-weight:500}.win-body .a{color:var(--color-accent-light)}
 .win-status{display:flex;gap:2px;padding:0 6px 6px;font-size:12px;font-family:var(--mono)}
 .win-status span{flex:1;padding:2px 8px;box-shadow:inset 1px 1px 0 var(--g3),inset -1px -1px 0 var(--white)}

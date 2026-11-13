@@ -173,9 +173,11 @@
             -File .\install-cobol-on-win.ps1</div>
         </div>
       </div>
-      <div class="win" role="img" aria-label="PowerShell window running install-cobol-on-win.ps1">
-        <div class="win-bar"><span class="t">C:\cow — install-cobol-on-win.ps1</span><span
-            class="k"><span>_</span><span>□</span><span>×</span></span></div>
+      <div class="win" role="group" aria-label="PowerShell window running install-cobol-on-win.ps1">
+        <div class="win-bar"><span class="t">C:\cow — install-cobol-on-win.ps1</span><button class="play"
+            type="button" data-video="kei1fzrQlIg" aria-pressed="false"
+            title="Plays from youtube-nocookie.com: nothing from YouTube loads until you click">▶ Video</button><span
+            class="k" aria-hidden="true"><span>_</span><span>□</span><span>×</span></span></div>
         <div class="win-menu">
           <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
         </div>
@@ -195,7 +197,8 @@
           <span class="a">==&gt;</span> Launcher CoBOL-Codium.cmd
 
           <span class="ok">Installation complete.</span>
-          <span class="p">PS C:\cow&gt;</span> _
+          <span class="p">PS C:\cow&gt;</span> <button class="play-line" type="button">▶ watch the demo</button><span
+            class="cursor" aria-hidden="true">_</span>
         </div>
         <div class="win-status"><span>Ready</span><span>x64</span><span>No admin</span></div>
       </div>
@@ -526,6 +529,48 @@ order_id   cust_id    order_date           shipped_date         status
             button.classList.remove('done');
           }, 1500);
         });
+      });
+    });
+
+    // Video: the click is the consent. Until then no YouTube script, iframe or
+    // cookie reaches the page; the player then comes from youtube-nocookie.com,
+    // on top of the terminal. The title-bar button toggles it; the
+    // "watch the demo" line and a click anywhere in the terminal only start it,
+    // since the iframe then covers the terminal. Removing the iframe stops the
+    // video and gives the terminal back.
+    document.querySelectorAll('button.play').forEach(function (button) {
+      var win = button.closest('.win');
+      var body = win.querySelector('.win-body');
+      function play() {
+        var player = document.createElement('iframe');
+        player.src = 'https://www.youtube-nocookie.com/embed/' +
+          encodeURIComponent(button.dataset.video) + '?autoplay=1&rel=0';
+        player.title = 'Smalt video';
+        player.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        player.allowFullscreen = true;
+        player.referrerPolicy = 'strict-origin-when-cross-origin';
+        body.appendChild(player);
+        win.classList.add('playing');
+        button.textContent = '■ Terminal';
+        button.setAttribute('aria-pressed', 'true');
+      }
+      function stop() {
+        body.querySelector('iframe').remove();
+        win.classList.remove('playing');
+        button.textContent = '▶ Video';
+        button.setAttribute('aria-pressed', 'false');
+      }
+      button.addEventListener('click', function () {
+        if (win.classList.contains('playing')) {
+          stop();
+        } else {
+          play();
+        }
+      });
+      body.addEventListener('click', function () {
+        if (!win.classList.contains('playing')) {
+          play();
+        }
       });
     });
   </script>
