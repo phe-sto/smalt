@@ -126,9 +126,6 @@
   <link rel="apple-touch-icon" href="/assets/icon-180.png">
   <link rel="stylesheet" href="/css/nocturne.css">
   <link rel="stylesheet" href="/css/cobol-on-windows.css">
-  <!-- Calendly embed script and styles -->
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </head>
 
 <body>
@@ -500,8 +497,7 @@ order_id   cust_id    order_date           shipped_date         status
           <button class="btn btn-solid" type="submit">Send →</button>
           <span class="or">or</span>
           <a class="btn btn-line" href="https://calendly.com/christophe-brun-papit/30min" target="_blank"
-            rel="noopener"
-            onclick="if (window.Calendly) { Calendly.initPopupWidget({ url: this.href }); return false; }">Book a
+            rel="noopener" data-calendly>Book a
             30-min call ↗</a>
         </div>
       </form>
@@ -534,6 +530,42 @@ order_id   cust_id    order_date           shipped_date         status
             button.classList.remove('done');
           }, 1500);
         });
+      });
+    });
+
+    // Calendly: like the video, the click is the consent. Its widget script and
+    // stylesheet are fetched only on the first click on a booking link, then
+    // the popup opens. A modified click (new tab, new window) keeps the plain
+    // link, and so does a failed load, which opens calendly.com in a new tab.
+    document.querySelectorAll('a[data-calendly]').forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.button !== 0) {
+          return;
+        }
+        event.preventDefault();
+        function open() {
+          Calendly.initPopupWidget({ url: link.href });
+        }
+        if (window.Calendly) {
+          open();
+          return;
+        }
+        if (link.dataset.calendly === 'loading') {
+          return;
+        }
+        link.dataset.calendly = 'loading';
+        var style = document.createElement('link');
+        style.rel = 'stylesheet';
+        style.href = 'https://assets.calendly.com/assets/external/widget.css';
+        document.head.appendChild(style);
+        var script = document.createElement('script');
+        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+        script.onload = open;
+        script.onerror = function () {
+          link.dataset.calendly = '';
+          window.open(link.href, '_blank', 'noopener');
+        };
+        document.head.appendChild(script);
       });
     });
 
